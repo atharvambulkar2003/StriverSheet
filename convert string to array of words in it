@@ -1,1 +1,2 @@
 String str[]=s.trim().split("\\s+");
+result=result*10+s.charAt(i)+'0';//adding numbers
