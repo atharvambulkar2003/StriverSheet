@@ -1,4 +1,4 @@
 String str[]=s.trim().split("\\s+");
 result=result*10+s.charAt(i)+'0';//adding numbers
 Character.isDigit(s.charAt(i)//is digit if given char
-s.charAt(i)+'0' //char to number
+s.charAt(i)-'0' //char to number
