@@ -1,0 +1,41 @@
+nums = [1,2,3], target = 11
+sum = 6
+target / sum = 1 → 1 full array → contributes 3 length
+remainder = 11 % 6 = 5
+In [1,2,3,1,2,3], minimum subarray = [2,3] → length = 2
+Final answer = 3 + 2 = 5
+
+
+
+class Solution {
+    public int minSizeSubarray(int[] nums, int target) {
+        int sum=0;
+
+        for(int i:nums){
+            sum+=i;
+        }
+        int totalArray=(int)(target/sum);
+        int remainder=target%sum;
+        int arr[]=new int[2*nums.length];
+
+        for(int i=0;i<arr.length;i++){
+            arr[i]=nums[i%nums.length];
+        }
+
+        int minLen=Integer.MAX_VALUE;
+
+        int left=0;
+        sum=0;
+        for(int i=0;i<arr.length;i++){
+            sum+=arr[i];
+            while(sum>remainder){
+                sum-=arr[left++];
+            }
+            if(sum==remainder){
+                minLen=Math.min(minLen,i-left+1);
+            }
+        }
+
+        return minLen==Integer.MAX_VALUE?-1:totalArray*nums.length+minLen;
+    }
+}
